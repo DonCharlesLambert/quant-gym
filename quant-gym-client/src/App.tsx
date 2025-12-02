@@ -1,24 +1,26 @@
+import { useEffect, useState } from "react";
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProblemPage from "./pages/Problem";
+
+
+export const TOKEN_STORAGE_KEY = "authToken";
+export const ID_STORAGE_KEY = "id";
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem(TOKEN_STORAGE_KEY));
+  const [id, setId] = useState(localStorage.getItem(ID_STORAGE_KEY));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <ProblemPage
+          data={{ activeNavOption: "editorial" }}
+          token={token}
+          id={id}
+        />
+      </BrowserRouter>
     </div>
   );
 }

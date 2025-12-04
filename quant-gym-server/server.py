@@ -1,6 +1,6 @@
 import asyncio
 import tornado
-from questions import find_mean
+from qbank import BANK
 
 class BaseHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -17,13 +17,18 @@ class QuestionHandler(BaseHandler):
     def initialize(self):
         pass
 
-    def get(self):
+    def get(self, route_name):
         # 'http://localhost:8888/get-question'
-        self.write(find_mean.problem_example.model_dump())
+        if route_name == "all":
+            self.write({"questions": [x.model_dump() for x in BANK.values()]})
+        else:
+            self.write(BANK[route_name].model_dump())
+        self.finish()
+
 
 def make_app():
     return tornado.web.Application([
-        (r"/api/get-question", QuestionHandler),
+        (r"/api/get-question/(.*)", QuestionHandler),
     ])
 
 async def main(port=8888):

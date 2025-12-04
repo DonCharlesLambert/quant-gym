@@ -1,4 +1,5 @@
 from model import Submission
+import traceback
 import multiprocessing
 from datetime import datetime
 from qbank import BANK
@@ -6,8 +7,7 @@ from safety import attribute_guard, builtins, import_remover
 
 def mark(code, name):
     question = BANK[name]
-    func, error = execute_user_code(code, question.function_name)
-    results = run_tests(func, question.test) if error is None else {"status": "Runtime Error", "error": error}
+    results = run_tests(code, question.test, question.function_name)
     return Submission(**{
         "problem_name": name,
         "status": results["status"],
@@ -22,7 +22,21 @@ def mark(code, name):
         "user_output": str(results.get("user_output", ""))
     })
 
-import traceback
+
+def worker(q, user_code, test_cases, function_name):
+    result = _run_tests(user_code, test_cases, function_name)
+    q.put(result)
+
+def run_tests(user_code, test_cases, function_name, timeout=5):
+    q = multiprocessing.Queue()
+    p = multiprocessing.Process(target=worker, args=(q, user_code, test_cases, function_name))
+    p.start()
+    p.join(timeout)
+    if p.is_alive():
+        p.kill()
+        return {"status": "Time Limit Exceeded"}
+    return q.get()
+
 
 def execute_user_code(user_code: str, function_name: str):
     """
@@ -47,19 +61,13 @@ def execute_user_code(user_code: str, function_name: str):
 
     return attribute_guard.attribute_guard(local_env[function_name]), None
 
-""" XXX - complete this
-def run_tests(func, test_cases, timeout=5):
-    q = multiprocessing.Queue()
-    p = multiprocessing.Process(target=lambda: q.put(_run_tests(func, test_cases)))
-    p.start()
-    p.join(timeout)
-    if p.is_alive():
-        p.kill()
-        return {"status": "Time Limit Exceeded"}
-    return q.get()
-"""
-
-def run_tests(func, test_cases):
+def _run_tests(user_code, test_cases, function_name):
+    func, error = execute_user_code(user_code, function_name)
+    if not func or error:
+        return {
+                "status": "Runtime Error",
+                "error": error
+            }
     for case in test_cases:
         given = case["input"]
         expected = case["output"]

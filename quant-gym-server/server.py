@@ -22,9 +22,9 @@ class QuestionHandler(BaseHandler):
     def get(self, route_name):
         # 'http://localhost:8888/get-question'
         if route_name == "all":
-            self.write({"questions": [x.model_dump() for x in BANK.values()]})
+            self.write({"questions": [x.model_dump(exclude={"test"}) for x in BANK.values()]})
         else:
-            self.write(BANK[route_name].model_dump())
+            self.write(BANK[route_name].model_dump(exclude={"test"}))
         self.finish()
 
     def post(self, route_name):

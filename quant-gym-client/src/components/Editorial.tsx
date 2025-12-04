@@ -5,7 +5,7 @@ const Editorial = ({ data }: { data: string }) => {
         <div>
             <div
                 id="description-body"
-                className="mt-[36px] ml-[26px] text-[14px]"
+                className="mt-[36px] ml-[26px] text-[16px]"
                 dangerouslySetInnerHTML={{
                     __html: convertMarkdownToHtml(data),
                 }}

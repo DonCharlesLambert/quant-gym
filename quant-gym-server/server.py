@@ -1,5 +1,6 @@
 import asyncio
 import tornado
+from questions import find_mean
 
 class BaseHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -18,11 +19,11 @@ class QuestionHandler(BaseHandler):
 
     def get(self):
         # 'http://localhost:8888/get-question'
-        self.write({"hi": "yes"})
+        self.write(find_mean.problem_example.model_dump())
 
 def make_app():
     return tornado.web.Application([
-        (r"/get-question", QuestionHandler),
+        (r"/api/get-question", QuestionHandler),
     ])
 
 async def main(port=8888):

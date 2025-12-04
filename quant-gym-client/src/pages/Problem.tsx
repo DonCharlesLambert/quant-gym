@@ -10,10 +10,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import Editorial from "../components/Editorial";
 import MainHeading from "../components/MainHeading";
 import Submissions from "../components/Submissions";
-/* import { API_URL } from "../App"; */
+import { API_URL } from "../App";
 import Loading from "../components/Loading";
 
-const API_URL = "localhost:3000"
 
 const ProblemPage = ({
     data,
@@ -51,7 +50,7 @@ const ProblemPage = ({
 
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-    const { name } = useParams();
+    const { name } = {name: "jeff"}; /*XXX: useParams();*/
 
     const submitCode = () => {
         setIsSubmitLoading(true);
@@ -87,7 +86,7 @@ const ProblemPage = ({
 
     useEffect(() => {
         axios
-            .post(`${API_URL}/api/problem/${name}`, { id: id })
+            .get(`${API_URL}/api/get-question`)
             .then(({ data }) => {
                 setProblemDescriptionData(
                     data.main as unknown as SetStateAction<
@@ -143,11 +142,12 @@ const ProblemPage = ({
         if (activeNavOption === "description") return;
 
         axios
-            .get(`${API_URL}/api/problem/${name}/${activeNavOption}`)
+            .get(`${API_URL}/api/get-question`)
             .then(({ data }) => {
                 if (activeNavOption === "editorial") {
-                    if ("editorial_body" in data) {
-                        setEditorial(data.editorial_body);
+                    console.log("fs")
+                    if ("editorial_body" in data.editorial) {
+                        setEditorial(data.editorial.editorial_body);
                     }
                 }
             })
@@ -182,7 +182,7 @@ const ProblemPage = ({
                                 />
                             )}
                         </div>
-                        <div className="description-body relative w-full h-[calc(100%-50px)] overflow-y-auto bg-black">
+                        <div className="description-body text-left relative w-full h-[calc(100%-50px)] overflow-y-auto bg-black">
                             {problemDescriptionData != undefined &&
                             activeNavOption === "description" ? (
                                 <>

@@ -10,20 +10,21 @@ const ProblemDescription = ({ data }: { data: DescriptionData }) => {
     const [likeStatus, setLikeStatus] = useState<string>(
         data.like_status || "none"
     );
+    console.log(data)
     return (
         <>
             {Object.keys(data).length !== 0 && (
                 <div>
-                    <h1 className="font-bold mt-[36px] ml-[26px] text-[22px]">
-                        <span id="problem-id">{data.id}</span>.{" "}
+                    <h1 className="font-bold mt-[20px] ml-[26px] text-[22px]">
+                        <span id="problem-id">{data.problem_id}</span>.{" "}
                         {kebabToSpacedPascal(data.name)}
                     </h1>
                     <div className="flex flex-row ml-[26px] mt-[20px] select-none">
                         <div
                             className={`${
-                                data.difficulty === "easy"
+                                data.difficulty === "Easy"
                                     ? "text-green-500"
-                                    : data.difficulty === "medium"
+                                    : data.difficulty === "Medium"
                                     ? "text-orange-500"
                                     : "text-red-600"
                             }`}
@@ -114,7 +115,7 @@ const ProblemDescription = ({ data }: { data: DescriptionData }) => {
                     </div>
                     <div
                         id="description-body"
-                        className="mt-[36px] ml-[26px] text-[14px]"
+                        className="mt-[36px] ml-[26px] text-[16px]"
                         dangerouslySetInnerHTML={{
                             __html: convertMarkdownToHtml(
                                 data.description_body

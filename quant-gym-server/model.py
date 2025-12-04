@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import List, Optional, Dict, Literal, Any
+from datetime import datetime
 
 
 class Main(BaseModel):
@@ -29,3 +30,21 @@ class Problem(BaseModel):
     editorial: Editorial
     test: List[Any]
     function_name: str
+
+class Submission(BaseModel):
+    problem_name: str
+    status: Literal[
+        "Accepted",
+        "Runtime Error",
+        "Wrong Answer",
+        "Time Limit Exceeded"
+    ]
+    error: Optional[str] = None
+    runtime: float
+    memory: float
+    language: Literal["Python"]
+    time: int
+    code_body: str
+    input: Optional[str] = None
+    expected_output: Optional[str] = None
+    user_output: Optional[str] = None

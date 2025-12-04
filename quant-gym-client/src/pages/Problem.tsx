@@ -51,11 +51,12 @@ const ProblemPage = ({
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     const { name } = useParams();
+    id = "don";
 
     const submitCode = () => {
         setIsSubmitLoading(true);
-        if (!id || !name) {
-            console.log("id not found");
+        if ( !id || !name) {
+            console.log("id or name not found");
             setIsSubmitLoading(false);
             return;
         }
@@ -64,16 +65,17 @@ const ProblemPage = ({
         axios
             .post<
                 {},
-                { data: Submission[] },
+                { data: {submissions: Submission[]} },
                 { code: string; id: string; problem_name: string }
-            >(`${API_URL}/api/problem/submit/${name}`, {
+            >(`${API_URL}/api/submit-question/${name}`, {
                 code,
                 id,
                 problem_name,
             })
             .then(({ data }) => {
+                console.log("submit response", data)
                 setIsSubmitted(true);
-                setSubmissionData(data);
+                setSubmissionData(data.submissions);
                 navigate(`/problem/${name}/submissions`);
                 setIsSubmitLoading(false);
             })
@@ -145,7 +147,6 @@ const ProblemPage = ({
             .get(`${API_URL}/api/get-question/${name}`)
             .then(({ data }) => {
                 if (activeNavOption === "editorial") {
-                    console.log("fs")
                     if ("editorial_body" in data.editorial) {
                         setEditorial(data.editorial.editorial_body);
                     }

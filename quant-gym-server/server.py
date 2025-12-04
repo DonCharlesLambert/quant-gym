@@ -1,6 +1,8 @@
 import asyncio
 import tornado
+import json
 from qbank import BANK
+from marker import mark
 
 class BaseHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -25,10 +27,15 @@ class QuestionHandler(BaseHandler):
             self.write(BANK[route_name].model_dump())
         self.finish()
 
+    def post(self, route_name):
+        body = json.loads(self.request.body)
+        self.write({"submissions": [mark(body["code"], body["problem_name"]).model_dump()]})
+
 
 def make_app():
     return tornado.web.Application([
         (r"/api/get-question/(.*)", QuestionHandler),
+        (r"/api/submit-question/(.*)", QuestionHandler)
     ])
 
 async def main(port=8888):

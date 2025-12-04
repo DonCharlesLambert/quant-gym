@@ -7,6 +7,7 @@ const Submissions = ({ data }: { data: SubmissionsData }) => {
                 No submissions found
             </div>
         );
+    console.log("submissions", data)
     const status = data.submissions_list[0].status;
     const error = data.submissions_list[0].error;
     const runtime = data.submissions_list[0].runtime;

@@ -10,7 +10,6 @@ const ProblemDescription = ({ data }: { data: DescriptionData }) => {
     const [likeStatus, setLikeStatus] = useState<string>(
         data.like_status || "none"
     );
-    console.log(data)
     return (
         <>
             {Object.keys(data).length !== 0 && (

@@ -1,9 +1,17 @@
-from model import Submission
+
+import sys
+import time
+import os
+import psutil
 import traceback
 import multiprocessing
+import numpy as np
+from model import Submission
 from datetime import datetime
 from qbank import BANK
 from safety import attribute_guard, builtins, import_remover
+
+multiprocessing.set_executable(sys.executable)
 
 def mark(code, name):
     question = BANK[name]
@@ -12,8 +20,8 @@ def mark(code, name):
         "problem_name": name,
         "status": results["status"],
         "error": results.get("error"),
-        "runtime": 0.0,
-        "memory": 0.0,
+        "runtime": results.get("runtime"),
+        "memory": results.get("memory"),
         "language": "Python",
         "time": int(datetime.now().timestamp()),
         "code_body": code,
@@ -24,7 +32,19 @@ def mark(code, name):
 
 
 def worker(q, user_code, test_cases, function_name):
+    proc = psutil.Process(os.getpid())
+    start_time = time.perf_counter()
     result = _run_tests(user_code, test_cases, function_name)
+    end_time = time.perf_counter()
+    runtime_ms = (end_time - start_time)
+    try:
+        mem_mb = proc.memory_info().peak_wset / (1024 * 1024)
+    except AttributeError:
+        mem_mb = proc.memory_info().rss / (1024 * 1024)
+
+    result["runtime"] = runtime_ms
+    result["memory"] = mem_mb
+
     q.put(result)
 
 def run_tests(user_code, test_cases, function_name, timeout=5):
@@ -47,7 +67,10 @@ def execute_user_code(user_code: str, function_name: str):
         return None, f"Invalid code: {error}"
 
     safe_globals = {
-        "__builtins__": builtins.SAFE_BUILTINS
+        "__builtins__": builtins.SAFE_BUILTINS,
+        "__name__": "__main__",
+        "__package__": None,
+        "np": np
     }
     local_env = {}
 
@@ -73,7 +96,7 @@ def _run_tests(user_code, test_cases, function_name):
         expected = case["output"]
 
         try:
-            result = func(given)
+            result = func(*given)
         except Exception as e:
             return {
                 "status": "Runtime Error",
@@ -82,8 +105,8 @@ def _run_tests(user_code, test_cases, function_name):
                 "expected_output": expected,
                 "user_output": None
             }
-
-        if result != expected:
+        print(result, expected)
+        if type(result) != type(expected) or (result != expected if type(expected) != np.ndarray else not np.array_equal(result, expected)):
             return {
                 "status": "Wrong Answer",
                 "error": None,

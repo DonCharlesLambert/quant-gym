@@ -125,7 +125,7 @@ interface MainHeadingItems {
 
 interface ProblemListData {
     main: {
-        id: number;
+        problem_id: number;
         name: string;
         difficulty: "hard" | "medium" | "easy" | string;
         like_count: number;

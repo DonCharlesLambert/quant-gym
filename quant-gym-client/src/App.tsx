@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProblemPage from "./pages/Problem";
+import ProblemSet from "./pages/ProblemSet";
 
 
 export const TOKEN_STORAGE_KEY = "authToken";
@@ -18,14 +19,12 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route
-                path="/" /* XXX: change this to go to problem set */
-                element={
-                    <ProblemPage
-                        data={{ activeNavOption: "description" }}
-                        token={token}
-                        id={id}
-                    />
-                }
+                path="/"
+                element={<ProblemSet token={token} id={id} />}
+            />
+            <Route
+                path="/problemset"
+                element={<ProblemSet token={token} id={id} />}
             />
             <Route
                 path="/problem/:name/editorial"

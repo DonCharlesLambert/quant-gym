@@ -50,7 +50,7 @@ const ProblemPage = ({
 
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-    const { name } = {name: "jeff"}; /*XXX: useParams();*/
+    const { name } = useParams();
 
     const submitCode = () => {
         setIsSubmitLoading(true);
@@ -86,7 +86,7 @@ const ProblemPage = ({
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/api/get-question`)
+            .get(`${API_URL}/api/get-question/${name}`)
             .then(({ data }) => {
                 setProblemDescriptionData(
                     data.main as unknown as SetStateAction<
@@ -142,7 +142,7 @@ const ProblemPage = ({
         if (activeNavOption === "description") return;
 
         axios
-            .get(`${API_URL}/api/get-question`)
+            .get(`${API_URL}/api/get-question/${name}`)
             .then(({ data }) => {
                 if (activeNavOption === "editorial") {
                     console.log("fs")

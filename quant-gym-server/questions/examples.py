@@ -1,5 +1,6 @@
 from model import Problem, Main, Editorial
 
+"""
 # 1. Calculate mean of list
 question1 = Problem(
     main=Main(
@@ -149,3 +150,4 @@ question5 = Problem(
     ],
     function_name="sum_digits"
 )
+"""

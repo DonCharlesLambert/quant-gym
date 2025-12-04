@@ -14,7 +14,14 @@ question_la1 = Problem(
         difficulty="Easy",
         like_count=0,
         dislike_count=0,
-        description_body="Write a function that takes a NumPy array and returns the sum of all its elements.",
+        description_body="""
+Write a Python function that takes a **1-dimensional NumPy array** of numbers and returns the **sum of all its elements**.
+
+        arr1 = np.array([1, 2, 3, 4])
+        array_sum(arr1)  # Output: 10
+
+Here, the result is 10 which is 1 + 2 + 3 + 4.
+        """,
         accept_count=0,
         submission_count=0,
         acceptance_rate_count=0,
@@ -26,16 +33,39 @@ question_la1 = Problem(
         code_body={"python": "def array_sum(arr: np.ndarray) -> float:"}
     ),
     editorial=Editorial(
-        editorial_body="Use numpy.sum(arr) to compute the sum of all elements."
+        editorial_body="""
+Use numpy.sum(arr) to compute the sum of all elements.
+
+    def array_sum(arr: np.ndarray) -> float:
+        return arr.sum()
+"""
     ),
     test=[
-        {"input": np.array([1,2,3]), "output": 6},
-        {"input": np.array([0,0,0]), "output": 0},
-        {"input": np.array([-1,5,2]), "output": 6},
+        {"input": np.array([1, 2, 3]), "output": 6},
+        {"input": np.array([0, 0, 0]), "output": 0},
+        {"input": np.array([-1, 5, 2]), "output": 6},
+        {"input": np.array([10, 20, 30, 40]), "output": 100},
+        {"input": np.array([-5, -10, -15]), "output": -30},
+        {"input": np.array([1]), "output": 1},
+        {"input": np.array([0]), "output": 0},
+        {"input": np.array([100, -50, 25]), "output": 75},
+        {"input": np.array([0.5, 1.5, 2.0]), "output": 4.0},
+        {"input": np.array([-1, 0, 1]), "output": 0},
+        {"input": np.array([7, 14, 21, 28, 35]), "output": 105},
+        {"input": np.array([-2, 4, -6, 8]), "output": 4},
+        {"input": np.array([999, 1, -500, -500]), "output": 0},
+        {"input": np.array([1, 1, 1, 1, 1, 1, 1]), "output": 7},
+        {"input": np.array([-3, -2, -1, 0, 1, 2, 3]), "output": 0},
+        {"input": np.array([0.1, 0.2, 0.3, 0.4]), "output": 1.0},
+        {"input": np.array([-0.5, 0.5, -1.5, 1.5]), "output": 0.0},
+        {"input": np.array([50, 25, 25]), "output": 100},
+        {"input": np.array([123, 456, 789]), "output": 1368},
+        {"input": np.array([-100, 200, -50, 25]), "output": 75},
     ],
     function_name="array_sum"
 )
 
+"""
 # 2. Element-wise Multiplication
 question_la2 = Problem(
     main=Main(
@@ -296,3 +326,4 @@ question_la10 = Problem(
     ],
     function_name="pca"
 )
+"""

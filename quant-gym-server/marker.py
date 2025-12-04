@@ -23,7 +23,7 @@ def mark(code, name):
         "runtime": results.get("runtime"),
         "memory": results.get("memory"),
         "language": "Python",
-        "time": int(datetime.now().timestamp()),
+        "time": int(datetime.now().timestamp() * 1000),
         "code_body": code,
         "input": str(results.get("input", "")),
         "expected_output": str(results.get("expected_output", "")),
@@ -96,7 +96,7 @@ def _run_tests(user_code, test_cases, function_name):
         expected = case["output"]
 
         try:
-            result = func(*given)
+            result = func(given)
         except Exception as e:
             return {
                 "status": "Runtime Error",
@@ -105,8 +105,7 @@ def _run_tests(user_code, test_cases, function_name):
                 "expected_output": expected,
                 "user_output": None
             }
-        print(result, expected)
-        if type(result) != type(expected) or (result != expected if type(expected) != np.ndarray else not np.array_equal(result, expected)):
+        if (result != expected if type(expected) != np.ndarray else not np.array_equal(result, expected)):
             return {
                 "status": "Wrong Answer",
                 "error": None,

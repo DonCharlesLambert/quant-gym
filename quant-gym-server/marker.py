@@ -96,7 +96,8 @@ def _run_tests(user_code, test_cases, function_name):
         expected = case["output"]
 
         try:
-            result = func(given)
+            args = (given,) if type(given) != tuple else given 
+            result = func(*given)
         except Exception as e:
             return {
                 "status": "Runtime Error",

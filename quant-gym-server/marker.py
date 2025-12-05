@@ -19,9 +19,9 @@ def mark(code, name):
     return Submission(**{
         "problem_name": name,
         "status": results["status"],
-        "error": results.get("error"),
-        "runtime": results.get("runtime"),
-        "memory": results.get("memory"),
+        "error": results.get("error", ""),
+        "runtime": results.get("runtime", 0),
+        "memory": results.get("memory", 0),
         "language": "Python",
         "time": int(datetime.now().timestamp() * 1000),
         "code_body": code,

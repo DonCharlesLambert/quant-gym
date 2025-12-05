@@ -21,8 +21,14 @@ class QuestionHandler(BaseHandler):
 
     def get(self, route_name):
         # 'http://localhost:8888/get-question'
+        tag = self.get_query_argument("tag", default=None)
         if route_name == "all":
-            self.write({"questions": [x.model_dump(exclude={"test"}) for x in BANK.values()]})
+            questions = BANK.values()
+            if tag:
+                questions = [
+                    q for q in questions if tag.lower() in (t.lower() for t in q.main.related_topics)
+                ]
+            self.write({"questions": [x.model_dump(exclude={"test"}) for x in questions]})
         else:
             self.write(BANK[route_name].model_dump(exclude={"test"}))
         self.finish()

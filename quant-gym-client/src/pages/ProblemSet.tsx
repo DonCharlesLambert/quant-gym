@@ -10,9 +10,11 @@ import { API_URL } from "../App";
 const ProblemSet = ({
     token,
     id,
+    tag,
 }: {
     token: string | null;
     id: string | null;
+    tag: string | null;
 }) => {
     const [username, setUsername] = useState<string>("");
     const [verified, setVerified] = useState<boolean>(false);
@@ -25,7 +27,7 @@ const ProblemSet = ({
             { text: "Calculus", link_path: "/problemset" },
             { text: "Statistics", link_path: "/problemset" },
             { text: "Option Pricing", link_path: "/problemset" },
-            { text: "Market Microstructure", link_path: "/problemset" },
+            { text: "Market Microstructure", link_path: "/problemset/market-microstructure" },
         ],
     };
 
@@ -77,6 +79,12 @@ const ProblemSet = ({
                 setProblemListData(data.questions);
             });
     }, []);
+
+    useEffect(() => {
+        const tagQuery = tag ? `?tag=${tag}` : "";
+        axios.get(`${API_URL}/api/get-question/all${tagQuery}`)
+            .then(({ data }) => setProblemListData(data.questions));
+    }, [tag]);
 
     return (
         <>

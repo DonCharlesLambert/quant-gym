@@ -251,10 +251,6 @@ const Quiz = () => {
       {/* Bottom Action Bar */}
       <footer className="fixed bottom-0 left-0 w-full p-6 bg-surface-container-low/80 backdrop-blur-xl border-t border-white/5 z-50">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <button className="flex items-center gap-2 px-6 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all active:scale-95">
-            <span className="material-symbols-outlined">help_outline</span>
-            <span className="font-medium">Hint (50 Gems)</span>
-          </button>
           <div className="flex items-center gap-4">
             <button onClick={handleSkip} className="px-8 py-3 rounded-xl font-headline font-bold text-primary-fixed hover:bg-primary/10 transition-all">
               Skip

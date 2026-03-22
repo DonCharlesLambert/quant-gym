@@ -219,11 +219,14 @@ const Quiz = () => {
             <button
               onClick={handleContinue}
               disabled={!showFeedback}
-              className={`px-12 py-3 rounded-xl font-headline font-bold shadow-[0_8px_20px_rgba(133,173,255,0.3)] hover:shadow-[0_12px_24px_rgba(133,173,255,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all ${
+              className={`px-12 py-3 rounded-xl font-headline font-bold transition-all ${
                 showFeedback
-                  ? 'kinetic-gradient text-on-primary'
-                  : 'bg-surface-container-high text-on-surface-variant cursor-not-allowed'
+                  ? 'text-on-primary shadow-[0_8px_20px_rgba(133,173,255,0.3)] hover:shadow-[0_12px_24px_rgba(133,173,255,0.5)] hover:-translate-y-0.5 active:translate-y-0'
+                  : 'bg-surface-container-high text-on-surface-variant cursor-not-allowed opacity-50'
               }`}
+              style={showFeedback ? {
+                background: 'linear-gradient(135deg, #85adff 0%, #6e9fff 100%)'
+              } : {}}
             >
               {currentQuestion < totalQuestions - 1 ? 'Continue' : 'Finish Quiz'}
             </button>

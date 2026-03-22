@@ -98,9 +98,9 @@ const Lab = () => {
                   </div>
                   <button
                     onClick={() => handleTileClick(tile.id)}
-                    className={`w-full bg-gradient-to-r from-${color} to-${color}-container text-on-${color} font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95`}
+                    className={`w-full bg-${color} text-on-${color} font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95`}
                   >
-                    {tile.buttonText}
+                    Start Quiz
                   </button>
                 </div>
               </div>

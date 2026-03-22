@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import Lab from './components/Lab';
 import Quiz from './components/Quiz';
+import Results from './components/Results';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/lab/:subject" element={<Lab />} />
           <Route path="/quiz/:subject" element={<Quiz />} />
+          <Route path="/results" element={<Results />} />
         </Routes>
       </div>
     </Router>

@@ -10,6 +10,7 @@ const Quiz = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [score, setScore] = useState(0);
   const [streak] = useState(14); // Mock streak data
+  const [quizResults, setQuizResults] = useState([]);
 
   // Get quiz data based on subject
   const quizData = getQuizData(subject);
@@ -23,9 +24,26 @@ const Quiz = () => {
     setSelectedAnswer(answerIndex);
     setShowFeedback(true);
 
-    if (answerIndex === quizData.questions[currentQuestion].correctAnswer) {
-      setScore(score + quizData.questions[currentQuestion].xp);
+    const currentQ = quizData.questions[currentQuestion];
+    const isCorrect = answerIndex === currentQ.correctAnswer;
+
+    if (isCorrect) {
+      setScore(score + currentQ.xp);
     }
+
+    // Record the result
+    const result = {
+      question: currentQ.question,
+      options: currentQ.options,
+      userAnswer: answerIndex,
+      correctAnswer: currentQ.correctAnswer,
+      isCorrect,
+      explanation: currentQ.explanation,
+      difficulty: currentQ.difficulty,
+      xp: currentQ.xp
+    };
+
+    setQuizResults([...quizResults, result]);
   };
 
   const handleContinue = () => {
@@ -34,8 +52,15 @@ const Quiz = () => {
       setSelectedAnswer(null);
       setShowFeedback(false);
     } else {
-      // Quiz completed - navigate to results
-      navigate('/results', { state: { score, totalQuestions, subject } });
+      // Quiz completed - navigate to results with all data
+      navigate('/results', {
+        state: {
+          score,
+          totalQuestions,
+          subject,
+          quizResults
+        }
+      });
     }
   };
 

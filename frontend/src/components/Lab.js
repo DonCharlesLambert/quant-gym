@@ -1,9 +1,29 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getLabTiles } from '../api';
 
 const Lab = () => {
   const { subject } = useParams();
+  const navigate = useNavigate();
+
+  // Map tile IDs to quiz subjects
+  const getQuizSubject = (tileId) => {
+    const quizMapping = {
+      'cs-1': 'python-mastery',
+      'cs-2': 'data-structures',
+      'cs-3': 'data-structures', // Could be algorithms quiz
+      'math-1': 'linear-algebra',
+      'math-2': 'linear-algebra',
+      'finance-1': 'stochastic-calculus',
+      'finance-2': 'stochastic-calculus'
+    };
+    return quizMapping[tileId] || 'general';
+  };
+
+  const handleTileClick = (tileId) => {
+    const quizSubject = getQuizSubject(tileId);
+    navigate(`/quiz/${quizSubject}`);
+  };
   const getContent = () => {
     switch (subject) {
       case 'cs':
@@ -76,7 +96,10 @@ const Lab = () => {
                     </div>
                     <span className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">{tile.badges.earned}/{tile.badges.total} Badges</span>
                   </div>
-                  <button className={`w-full bg-gradient-to-r from-${color} to-${color}-container text-on-${color} font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95`}>
+                  <button
+                    onClick={() => handleTileClick(tile.id)}
+                    className={`w-full bg-gradient-to-r from-${color} to-${color}-container text-on-${color} font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95`}
+                  >
                     {tile.buttonText}
                   </button>
                 </div>

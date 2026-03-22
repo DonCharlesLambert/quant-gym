@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { getQuizData } from '../quiz_api';
 
 const Quiz = () => {
   const { subject } = useParams();
@@ -10,22 +11,8 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [streak] = useState(14); // Mock streak data
 
-  // Mock quiz data - in a real app, this would come from an API
-  const quizData = {
-    questions: [
-      {
-        id: 1,
-        question: "If W(t) is a standard Wiener process, what is the expected value of E[W(t)²] at time t?",
-        options: ["Zero", "t", "t²", "√(t)"],
-        correctAnswer: 1, // Index of correct answer
-        explanation: "By definition of the Wiener process, the variance Var(W(t)) = E[W(t)²] - (E[W(t)])². Since E[W(t)] = 0, it follows that E[W(t)²] = Var(W(t)) = t.",
-        tip: "Remember: W(t) ~ N(0, t)",
-        difficulty: "Advanced",
-        xp: 50
-      },
-      // Add more questions here
-    ]
-  };
+  // Get quiz data based on subject
+  const quizData = getQuizData(subject);
 
   const totalQuestions = quizData.questions.length;
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
@@ -97,7 +84,7 @@ const Quiz = () => {
             </button>
             <div>
               <span className="text-label-sm uppercase tracking-widest text-on-surface-variant font-bold">Daily Sprint</span>
-              <h1 className="text-headline-md font-headline text-on-surface">Stochastic Calculus 101</h1>
+              <h1 className="text-headline-md font-headline text-on-surface">{quizData.title}</h1>
             </div>
           </div>
           {/* Streak Indicator */}

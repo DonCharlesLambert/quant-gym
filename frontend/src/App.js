@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import Lab from './components/Lab';
+import Quiz from './components/Quiz';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/lab/:subject" element={<Lab />} />
+          <Route path="/quiz/:subject" element={<Quiz />} />
         </Routes>
       </div>
     </Router>

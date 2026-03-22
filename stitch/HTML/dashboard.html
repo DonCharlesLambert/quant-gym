@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuantGym Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#006a2d",
+              "surface-variant": "#142156",
+              "error-container": "#9f0519",
+              "primary-fixed": "#6e9fff",
+              "on-tertiary": "#00692c",
+              "inverse-primary": "#005bc4",
+              "on-secondary-fixed": "#4f0089",
+              "secondary-fixed-dim": "#dbb4ff",
+              "surface-container-low": "#050f38",
+              "secondary": "#c180ff",
+              "surface-tint": "#85adff",
+              "on-secondary-fixed-variant": "#7511c3",
+              "on-tertiary-fixed": "#004a1d",
+              "primary-fixed-dim": "#5391ff",
+              "surface-container": "#091542",
+              "outline": "#6b739d",
+              "tertiary-container": "#6bff8f",
+              "primary": "#85adff",
+              "on-primary": "#002c66",
+              "on-primary-container": "#002150",
+              "on-tertiary-container": "#005f28",
+              "surface-bright": "#192760",
+              "inverse-surface": "#fbf8ff",
+              "on-secondary-container": "#e9cdff",
+              "error": "#ff716c",
+              "error-dim": "#d7383b",
+              "background": "#020a2f",
+              "secondary-fixed": "#e5c6ff",
+              "on-surface": "#e1e4ff",
+              "on-secondary": "#33005b",
+              "secondary-dim": "#9c48ea",
+              "secondary-container": "#6f00be",
+              "surface-dim": "#020a2f",
+              "surface-container-high": "#0e1b4c",
+              "on-error": "#490006",
+              "primary-dim": "#699cff",
+              "on-surface-variant": "#a1a9d5",
+              "on-error-container": "#ffa8a3",
+              "inverse-on-surface": "#4b537a",
+              "tertiary-fixed": "#6bff8f",
+              "tertiary-dim": "#5bf083",
+              "surface": "#020a2f",
+              "tertiary": "#c5ffc9",
+              "primary-container": "#6e9fff",
+              "surface-container-lowest": "#000000",
+              "surface-container-highest": "#142156",
+              "tertiary-fixed-dim": "#5bf083",
+              "outline-variant": "#3d466c",
+              "on-primary-fixed-variant": "#002a62",
+              "on-background": "#e1e4ff",
+              "on-primary-fixed": "#000000"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(20, 33, 86, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .achievement-blob {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-blue-950/60 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-blue-300 font-headline">QuantGym</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-blue-300 font-bold font-headline transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-blue-100/70 hover:bg-white/10 px-3 py-1 rounded transition-colors duration-200 font-headline" href="#">Training</a>
+<a class="text-blue-100/70 hover:bg-white/10 px-3 py-1 rounded transition-colors duration-200 font-headline" href="#">Market</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-slate-800/40 rounded-full">
+<span class="material-symbols-outlined text-blue-300 text-sm">bolt</span>
+<span class="text-xs font-bold font-headline text-blue-300">1,240 XP</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-blue-100/70 cursor-pointer hover:bg-white/10 p-2 rounded-full transition-colors" data-icon="military_tech">military_tech</span>
+<span class="material-symbols-outlined text-blue-100/70 cursor-pointer hover:bg-white/10 p-2 rounded-full transition-colors" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-primary/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile avatar close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuuxxHOeBImG9gr7Gpcfr1Sk00U-kqNsEd3tlZG3UsjTEW5HXWRo0p9GyhLOtgHm58IKlMhusoKff33I57V1fK9Pge8fv_ygNGwUZWhBkwEg4mLy9Qrr9WknYS0gSIjfvP4A9gRxwO1m7MpFEMfK3Z0Cudztiv6MeoQaFJx8qEiBVA4xb2oIVR-9EUQ5ly4ArKKSvGsPmZkwMTwmL7HuUfwNsLzvyDLaKOJWUyGnzEWNc8gnMxegfX4U9uo2ejR093SjF2DNkQOyi_"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-slate-900/80 backdrop-blur-2xl shadow-2xl flex flex-col py-8 px-4 space-y-2 pt-24 hidden lg:flex">
+<div class="mb-8 px-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">psychology</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-blue-300 font-headline leading-tight">Level 14</h3>
+<p class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Quant Initiate</p>
+</div>
+</div>
+<div class="w-full bg-slate-800/50 h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="bg-purple-500/20 text-purple-300 border-r-4 border-purple-500 rounded-r-lg flex items-center gap-3 px-4 py-3 active:translate-x-1 duration-150 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium">Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-sm font-medium">Explore</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="font-['Inter'] text-sm font-medium">Quizzes</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-['Inter'] text-sm font-medium">Achievements</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-1 border-t border-slate-800/30">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-3 rounded-xl mb-4 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+                Start Daily Sprint
+            </button>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-sm font-medium">Settings</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-['Inter'] text-sm font-medium">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 px-6 pb-12 min-h-screen">
+<div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8">
+<!-- Left Column: Primary Training -->
+<div class="xl:col-span-8 space-y-8">
+<!-- Hero Section: Daily Sprint -->
+<section class="relative overflow-hidden rounded-3xl bg-surface-container-low group shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-50"></div>
+<div class="relative z-10 p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/20 rounded-full border border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="text-xs font-bold text-secondary uppercase tracking-widest font-label">7 Day Streak Active</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold font-headline leading-tight tracking-tight">Continue your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Daily Sprint</span></h1>
+<p class="text-on-surface-variant max-w-md font-body">Complete today's challenge to maintain your streak and earn a <span class="text-tertiary">2x Multiplier</span> on all XP gained.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold font-label uppercase tracking-wider text-on-surface-variant">
+<span>Daily Goal Progress</span>
+<span class="text-primary">450 / 600 XP</span>
+</div>
+<div class="w-full bg-background/50 h-3 rounded-full overflow-hidden p-[2px] border border-outline-variant/30">
+<div class="bg-gradient-to-r from-primary to-secondary h-full rounded-full shadow-[0_0_12px_rgba(133,173,255,0.5)]" style="width: 75%"></div>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold font-headline flex items-center gap-3 hover:shadow-xl hover:shadow-primary/30 transition-all active:scale-95">
+                                Resume Training
+                                <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+<div class="w-48 h-48 relative flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary/10 rounded-full blur-3xl animate-pulse"></div>
+<div class="relative text-center">
+<span class="text-7xl font-bold font-headline text-secondary leading-none">07</span>
+<p class="text-xs font-bold text-secondary-fixed-dim uppercase tracking-tighter mt-1">Days Strong</p>
+</div>
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="283" stroke-dashoffset="80" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+</div>
+</div>
+</section>
+<!-- Training Segments Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- CS Card -->
+<div class="bg-surface-container-high rounded-2xl p-6 border-l-4 border-primary transition-all hover:bg-surface-bright group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+<span class="text-[10px] font-bold text-on-surface-variant px-2 py-1 bg-surface-variant rounded">LVL 08</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Computer Science</h4>
+<p class="text-xs text-on-surface-variant mb-6 font-body">Data Structures &amp; Algo</p>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold text-primary uppercase">
+<span>Mastery</span>
+<span>82%</span>
+</div>
+<div class="w-full bg-background h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[82%] shadow-[0_0_8px_rgba(133,173,255,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Finance Card -->
+<div class="bg-surface-container-high rounded-2xl p-6 border-l-4 border-secondary transition-all hover:bg-surface-bright group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary text-3xl">payments</span>
+<span class="text-[10px] font-bold text-on-surface-variant px-2 py-1 bg-surface-variant rounded">LVL 12</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Finance</h4>
+<p class="text-xs text-on-surface-variant mb-6 font-body">Stochastic Calculus</p>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold text-secondary uppercase">
+<span>Mastery</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-background h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[45%] shadow-[0_0_8px_rgba(193,128,255,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Math Card -->
+<div class="bg-surface-container-high rounded-2xl p-6 border-l-4 border-tertiary transition-all hover:bg-surface-bright group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary text-3xl">functions</span>
+<span class="text-[10px] font-bold text-on-surface-variant px-2 py-1 bg-surface-variant rounded">LVL 15</span>
+</div>
+<h4 class="font-headline font-bold text-lg mb-1">Mathematics</h4>
+<p class="text-xs text-on-surface-variant mb-6 font-body">Linear Algebra</p>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold text-tertiary uppercase">
+<span>Mastery</span>
+<span>94%</span>
+</div>
+<div class="w-full bg-background h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[94%] shadow-[0_0_8px_rgba(197,255,201,0.6)]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Achievements -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="text-xl font-bold font-headline tracking-tight">Recent Achievements</h3>
+<a class="text-xs font-bold text-primary uppercase tracking-widest hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-outline-variant/10 w-full sm:w-auto flex-1">
+<div class="w-12 h-12 achievement-blob bg-gradient-to-br from-primary-fixed to-primary-dim flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-xl">code_off</span>
+</div>
+<div>
+<h5 class="text-sm font-bold font-headline">Binary Master</h5>
+<p class="text-[10px] text-on-surface-variant">Complete 50 bitwise challenges</p>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-outline-variant/10 w-full sm:w-auto flex-1">
+<div class="w-12 h-12 achievement-blob bg-gradient-to-br from-tertiary to-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-container text-xl">bolt</span>
+</div>
+<div>
+<h5 class="text-sm font-bold font-headline">Quick Solver</h5>
+<p class="text-[10px] text-on-surface-variant">Solve 5 problems under 2 mins</p>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-outline-variant/10 w-full sm:w-auto flex-1 opacity-50">
+<div class="w-12 h-12 achievement-blob bg-slate-800 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-xl">lock</span>
+</div>
+<div>
+<h5 class="text-sm font-bold font-headline">Market Maker</h5>
+<p class="text-[10px] text-on-surface-variant">Locked achievement</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Leaderboard & Stats -->
+<div class="xl:col-span-4 space-y-8">
+<section class="bg-surface-container-high rounded-3xl overflow-hidden flex flex-col h-full shadow-xl">
+<div class="p-6 border-b border-outline-variant/20 flex justify-between items-center">
+<h3 class="font-headline font-bold text-xl">Leaderboard</h3>
+<span class="text-[10px] font-bold text-tertiary bg-tertiary/10 px-2 py-1 rounded uppercase">Global Rank: #42</span>
+</div>
+<div class="p-4 flex-1 space-y-2">
+<!-- User (Highlighted) -->
+<div class="flex items-center gap-4 p-3 bg-primary/10 rounded-xl border border-primary/20">
+<span class="text-sm font-bold text-primary w-4">1</span>
+<img alt="Leader" class="w-10 h-10 rounded-full object-cover border-2 border-primary" data-alt="Profile photo of man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcYLWIdm61oT6yHI7omLA6e4uxlcJm4zhFiZyCCTMesJPwiYFMKaWPvkiYFbkajYZmMbCAVe4ltQulxuxexTFV6B4VIld7N8FBpZ1ADjqOgyBGZiiv02ymD5lCZ4TSt2-Q1QtOjfNRhTTIDndEimfn8ja23tlEUnIJYsXq-UW2B5OpVsckZMzD6Wqq77tpnjHbAGqMl0np4IAyLLbLXPK8La1I4DWez_BPfU0iCFOcw6X0uVwLqBBX9jh1xyHxA0WGPufXKTdUX6Bj"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-headline">Alex Chen</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Quantitative dev</p>
+</div>
+<span class="text-xs font-bold text-primary">12.4k XP</span>
+</div>
+<!-- Others -->
+<div class="flex items-center gap-4 p-3 hover:bg-white/5 rounded-xl transition-colors">
+<span class="text-sm font-medium text-on-surface-variant w-4">2</span>
+<img alt="Leader" class="w-10 h-10 rounded-full object-cover grayscale" data-alt="Profile photo of woman with headphones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg_IingX2XYfsx_qtyvRxwwO7JdQthh3u5BXn1ld9nS8bieVqKkOHM5kpT9EVtSd5ad2RGUTnmu1r1o-nBpwmPTCdxsJIhYAKhgLfv4zJzXKgT87xtNHPMyfSuyEhfbmg1OAa3nil-7ntq1BJv3Ojlb9q66Lhq_-jxX9y4uvA4ZZDurX2KYkm1YkCv-PB23mLEui5HV2Aq_6VzV4Hbkw3bwSB-OAo7pbVE_-H9F6o9sotO8fzzhOGHbzouYbIjyutgQs9ilFLNtrZu"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-headline">Sarah J.</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Math Major</p>
+</div>
+<span class="text-xs font-bold text-on-surface">11.9k XP</span>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-white/5 rounded-xl transition-colors">
+<span class="text-sm font-medium text-on-surface-variant w-4">3</span>
+<img alt="Leader" class="w-10 h-10 rounded-full object-cover grayscale" data-alt="Profile photo of man wearing glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY1hUQvsZBTFcqFyWlzT51k7QFyhapSxv1oKlW11nwvvLiALWqBPYu1uwnlQKX8OXw-7yG1WBu7Xc40k2FwfsVfVjgbKjW-8IJsisAyoAMPvf5HlyMMGBbL6AokQPIWVlfPCrIzPE6GAffX_J73Kmz_XAPX5xaDYyOgzMZmHMCsAAhfBHchWPd-MlQatFULWrtl8CIEsaoZOJJ_UvxLTT36dXT4TpOSNRlJY0QBy3WD4pLJsJiYw7H9XIIlmnx-0pqOFDf5oKjZmOU"/>
+<div class="flex-1">
+<p class="text-sm font-bold font-headline">Marcus R.</p>
+<p class="text-[10px] text-on-surface-variant uppercase">CS Student</p>
+</div>
+<span class="text-xs font-bold text-on-surface">10.2k XP</span>
+</div>
+<div class="py-4 flex justify-center">
+<div class="h-1.5 w-1.5 bg-outline-variant/40 rounded-full mx-1"></div>
+<div class="h-1.5 w-1.5 bg-outline-variant/40 rounded-full mx-1"></div>
+<div class="h-1.5 w-1.5 bg-outline-variant/40 rounded-full mx-1"></div>
+</div>
+<!-- Current User -->
+<div class="flex items-center gap-4 p-3 bg-surface-bright rounded-xl border border-secondary/20 ring-2 ring-secondary/20">
+<span class="text-sm font-bold text-secondary w-4">42</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary">YOU</div>
+<div class="flex-1">
+<p class="text-sm font-bold font-headline">User#4212</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Initiate</p>
+</div>
+<span class="text-xs font-bold text-secondary">3.4k XP</span>
+</div>
+</div>
+<button class="m-6 bg-surface-variant text-on-surface-variant font-bold py-3 rounded-xl hover:text-on-surface transition-all border border-outline-variant/10">
+                        View Full Rankings
+                    </button>
+</section>
+<section class="glass-panel p-6 rounded-3xl border border-outline-variant/10 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-secondary/20 rounded-full blur-3xl"></div>
+<h3 class="font-headline font-bold mb-4">Upcoming Event</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex flex-col items-center justify-center leading-tight">
+<span class="text-[10px] font-bold uppercase text-on-secondary-container opacity-70">Nov</span>
+<span class="text-xl font-bold text-on-secondary-container">24</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">Options Greeks Blitz</h4>
+<p class="text-xs text-on-surface-variant">Live Trading Sim Tournament</p>
+</div>
+</div>
+<button class="w-full bg-white/5 hover:bg-white/10 text-on-surface font-bold py-2 rounded-lg text-sm transition-all">Register Now</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full bg-blue-950/90 backdrop-blur-xl px-6 py-3 flex justify-between items-center z-50 border-t border-white/5">
+<a class="flex flex-col items-center gap-1 text-blue-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px]">Explore</span>
+</a>
+<div class="relative -mt-8">
+<button class="bg-gradient-to-br from-primary to-secondary w-14 h-14 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">bolt</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="text-[10px]">Quizzes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px]">Profile</span>
+</a>
+</footer>
+</body></html>

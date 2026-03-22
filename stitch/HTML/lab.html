@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#006a2d",
+              "surface-variant": "#142156",
+              "error-container": "#9f0519",
+              "primary-fixed": "#6e9fff",
+              "on-tertiary": "#00692c",
+              "inverse-primary": "#005bc4",
+              "on-secondary-fixed": "#4f0089",
+              "secondary-fixed-dim": "#dbb4ff",
+              "surface-container-low": "#050f38",
+              "secondary": "#c180ff",
+              "surface-tint": "#85adff",
+              "on-secondary-fixed-variant": "#7511c3",
+              "on-tertiary-fixed": "#004a1d",
+              "primary-fixed-dim": "#5391ff",
+              "surface-container": "#091542",
+              "outline": "#6b739d",
+              "tertiary-container": "#6bff8f",
+              "primary": "#85adff",
+              "on-primary": "#002c66",
+              "on-primary-container": "#002150",
+              "on-tertiary-container": "#005f28",
+              "surface-bright": "#192760",
+              "inverse-surface": "#fbf8ff",
+              "on-secondary-container": "#e9cdff",
+              "error": "#ff716c",
+              "error-dim": "#d7383b",
+              "background": "#020a2f",
+              "secondary-fixed": "#e5c6ff",
+              "on-surface": "#e1e4ff",
+              "on-secondary": "#33005b",
+              "secondary-dim": "#9c48ea",
+              "secondary-container": "#6f00be",
+              "surface-dim": "#020a2f",
+              "surface-container-high": "#0e1b4c",
+              "on-error": "#490006",
+              "primary-dim": "#699cff",
+              "on-surface-variant": "#a1a9d5",
+              "on-error-container": "#ffa8a3",
+              "inverse-on-surface": "#4b537a",
+              "tertiary-fixed": "#6bff8f",
+              "tertiary-dim": "#5bf083",
+              "surface": "#020a2f",
+              "tertiary": "#c5ffc9",
+              "primary-container": "#6e9fff",
+              "surface-container-lowest": "#000000",
+              "surface-container-highest": "#142156",
+              "tertiary-fixed-dim": "#5bf083",
+              "outline-variant": "#3d466c",
+              "on-primary-fixed-variant": "#002a62",
+              "on-background": "#e1e4ff",
+              "on-primary-fixed": "#000000"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(20, 33, 86, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-blue-950/60 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-blue-300 font-headline">QuantGym</span>
+<nav class="hidden md:flex space-x-6 text-sm">
+<a class="text-blue-100/70 hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Dashboard</a>
+<a class="text-blue-300 font-bold hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Explore</a>
+<a class="text-blue-100/70 hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Quizzes</a>
+<a class="text-blue-100/70 hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Achievements</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-blue-300 hover:bg-white/10 p-2 rounded-full transition-colors" data-icon="bolt">bolt</button>
+<button class="material-symbols-outlined text-blue-300 hover:bg-white/10 p-2 rounded-full transition-colors" data-icon="military_tech">military_tech</button>
+<button class="material-symbols-outlined text-blue-300 hover:bg-white/10 p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-slate-900/80 backdrop-blur-2xl shadow-2xl hidden lg:flex flex-col py-8 px-4 space-y-2 pt-24">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border-2 border-primary">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-blue-300 font-headline">Level 14</p>
+<p class="text-xs text-slate-400">Quant Initiate</p>
+</div>
+</div>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 transition-all active:translate-x-1 duration-150 rounded-r-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="bg-purple-500/20 text-purple-300 border-r-4 border-purple-500 rounded-r-lg px-4 py-3 flex items-center gap-3 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-medium text-sm">Explore</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 transition-all active:translate-x-1 duration-150 rounded-r-lg" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="font-medium text-sm">Quizzes</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 transition-all active:translate-x-1 duration-150 rounded-r-lg" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-medium text-sm">Achievements</span>
+</a>
+<div class="pt-8 mt-8 border-t border-slate-800/30">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 rounded-xl shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">
+                Start Daily Sprint
+            </button>
+</div>
+<div class="mt-auto space-y-1">
+<a class="text-slate-400 hover:text-white px-4 py-2 flex items-center gap-3 text-xs" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-2 flex items-center gap-3 text-xs" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-12 px-6 lg:px-12">
+<div class="max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="text-4xl lg:text-5xl font-bold font-headline tracking-tight text-on-surface mb-2">Computer Science <span class="text-primary">Core Lab</span></h1>
+<p class="text-on-surface-variant max-w-2xl">Master the foundations of computation through high-intensity interactive drills and gamified mastery tracks.</p>
+</div>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Topic Card: Python -->
+<div class="glass-card rounded-xl p-6 border border-white/5 flex flex-col group hover:bg-surface-bright transition-all duration-300 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="terminal">terminal</span>
+</div>
+<div class="bg-secondary/20 text-secondary text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            +500 XP
+                        </div>
+</div>
+<h3 class="text-xl font-bold font-headline mb-1">Python Mastery</h3>
+<p class="text-sm text-on-surface-variant mb-6">Functional programming, decorators, and memory management.</p>
+<div class="mt-auto space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-on-surface-variant font-medium">Mastery Progress</span>
+<span class="text-tertiary font-bold">78%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-primary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-background bg-secondary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-secondary-fixed" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">2/5 Badges</span>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95">
+                            Start Quiz
+                        </button>
+</div>
+</div>
+<!-- Topic Card: Data Structures -->
+<div class="glass-card rounded-xl p-6 border border-white/5 flex flex-col group hover:bg-surface-bright transition-all duration-300 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="account_tree">account_tree</span>
+</div>
+<div class="bg-secondary/20 text-secondary text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            +850 XP
+                        </div>
+</div>
+<h3 class="text-xl font-bold font-headline mb-1">Data Structures</h3>
+<p class="text-sm text-on-surface-variant mb-6">Heaps, AVL Trees, and Graph representation strategies.</p>
+<div class="mt-auto space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-on-surface-variant font-medium">Mastery Progress</span>
+<span class="text-tertiary font-bold">42%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-primary rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-background bg-secondary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-secondary-fixed" data-icon="hub" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">1/4 Badges</span>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-3 rounded-xl hover:shadow-[0_0_20px_rgba(110,159,255,0.4)] transition-all active:scale-95">
+                            Resume Lab
+                        </button>
+</div>
+</div>
+<!-- Topic Card: Algorithms -->
+<div class="glass-card rounded-xl p-6 border border-white/5 flex flex-col group hover:bg-surface-bright transition-all duration-300 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-xl bg-tertiary/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="calculate">calculate</span>
+</div>
+<div class="bg-secondary/20 text-secondary text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            +1.2k XP
+                        </div>
+</div>
+<h3 class="text-xl font-bold font-headline mb-1">Algorithms</h3>
+<p class="text-sm text-on-surface-variant mb-6">Dynamic Programming and amortized complexity analysis.</p>
+<div class="mt-auto space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-on-surface-variant font-medium">Mastery Progress</span>
+<span class="text-tertiary font-bold">12%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-primary rounded-full" style="width: 12%"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">0/6 Badges</span>
+</div>
+<button class="w-full bg-surface-container-high text-on-surface font-bold py-3 rounded-xl border border-outline-variant/30 hover:bg-surface-bright transition-all active:scale-95">
+                            Unlock Module
+                        </button>
+</div>
+</div>
+<!-- Leaderboard Section (Spans 2 columns on large) -->
+<div class="lg:col-span-2 glass-card rounded-xl border border-white/5 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<div>
+<h3 class="text-xl font-bold font-headline">Topic Champions</h3>
+<p class="text-xs text-on-surface-variant">Global performance leaderboard for this domain.</p>
+</div>
+<button class="text-primary text-xs font-bold uppercase tracking-widest hover:underline">View All</button>
+</div>
+<div class="divide-y divide-outline-variant/5">
+<div class="flex items-center gap-4 p-4 hover:bg-white/5 transition-colors">
+<span class="text-lg font-bold font-headline text-on-surface-variant w-6">01</span>
+<div class="relative">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-secondary" data-alt="Profile picture of a high ranking user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtmmVtjwH9wDTAeTHryVscxRtmEsXzp53SLtggG25FfWdyhdeOrz0LN6I5Jv9TyJLNjb-GuxC_aNVcZgfQ8Fp57N-ePR24LpIJZIK_PsOcwYpnX-2C7YPpeIS61q29YIROij8nv9grNrV5k_scipk5SJ_xr1NtyOuPpnT-79M2ZykD1Gy_5oTMcSxxjRso0e0DTtheTPWfS2a_zsbiROBdux3bUUWNvEwNFqbM9Zl3G2HwLkGnt7uOLWwYRijCP-QeIs5QxgbObLG5"/>
+<div class="absolute -bottom-1 -right-1 bg-secondary w-4 h-4 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-secondary" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Alex_Quant_Master</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Level 42 · Grandmaster</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">14,205 XP</p>
+<p class="text-[10px] text-tertiary font-bold uppercase">12 Sprints</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 hover:bg-white/5 transition-colors">
+<span class="text-lg font-bold font-headline text-on-surface-variant w-6">02</span>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary" data-alt="Profile picture of a secondary ranking user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPTkU9xIHT8ZFGufys66BMWKTIm6YxiNg4o29Yjo-whaUhaiM09-jIvGpCZmcYgwC-Rf6s6IxlIqatI13MYat1E655HPowzCoiJiA2IMJRhKr5ct3xskTSURW8ixHGdrejyVNub3arAT1jb7loPMYtcr2U8tRyrrTR-nm7pUIhLLkEB2_rXGzePEtyBME7f_r0eEpcn4pkEMTSSnohPzji64nRoOK7A85TEt50X8vzaVEKDdUbD7y8gehzRhYrT97CIyy2vGAz93lR"/>
+<div class="flex-1">
+<p class="font-bold text-sm">SarahDev_99</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Level 38 · Elite</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">12,180 XP</p>
+<p class="text-[10px] text-tertiary font-bold uppercase">8 Sprints</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-primary/10 border-l-4 border-primary">
+<span class="text-lg font-bold font-headline text-primary w-6">14</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border-2 border-primary">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="person">person</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">You (Quant Initiate)</p>
+<p class="text-[10px] text-primary-container font-bold uppercase tracking-wider">Current Session</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold">4,520 XP</p>
+<p class="text-[10px] text-tertiary font-bold uppercase">3 Sprints</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Sidebar Bento -->
+<div class="space-y-6">
+<!-- Daily Streak Card -->
+<div class="glass-card rounded-xl p-6 border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 text-secondary/10 group-hover:text-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-8xl" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="relative z-10">
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Current Streak</h4>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-5xl font-bold font-headline text-secondary">07</span>
+<span class="text-lg font-bold font-headline text-on-surface-variant">Days</span>
+</div>
+<p class="text-xs text-on-surface-variant">Complete one more lab to maintain your <span class="text-secondary font-bold">2.5x Multiplier</span>.</p>
+<div class="mt-6 flex gap-2">
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+<div class="h-1 flex-1 bg-secondary rounded-full shadow-[0_0_10px_rgba(193,128,255,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Module Summary -->
+<div class="bg-surface-container-high rounded-xl p-6 border border-white/5">
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">CS Lab Summary</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface-variant">Questions Answered</span>
+<span class="text-sm font-bold">1,240</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface-variant">Average Accuracy</span>
+<span class="text-sm font-bold text-tertiary">92.4%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface-variant">Time in Lab</span>
+<span class="text-sm font-bold">14h 22m</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 w-full bg-blue-950/80 backdrop-blur-xl flex justify-around items-center h-16 z-50 px-4">
+<button class="flex flex-col items-center gap-1 text-blue-100/70">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-blue-300">
+<span class="material-symbols-outlined" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] font-bold">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-blue-100/70">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="text-[10px]">Quizzes</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-blue-100/70">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px]">Profile</span>
+</button>
+</nav>
+</body></html>

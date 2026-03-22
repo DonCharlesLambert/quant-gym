@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuantGym | Daily Sprint</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#006a2d",
+                        "surface-variant": "#142156",
+                        "error-container": "#9f0519",
+                        "primary-fixed": "#6e9fff",
+                        "on-tertiary": "#00692c",
+                        "inverse-primary": "#005bc4",
+                        "on-secondary-fixed": "#4f0089",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "surface-container-low": "#050f38",
+                        "secondary": "#c180ff",
+                        "surface-tint": "#85adff",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "on-tertiary-fixed": "#004a1d",
+                        "primary-fixed-dim": "#5391ff",
+                        "surface-container": "#091542",
+                        "outline": "#6b739d",
+                        "tertiary-container": "#6bff8f",
+                        "primary": "#85adff",
+                        "on-primary": "#002c66",
+                        "on-primary-container": "#002150",
+                        "on-tertiary-container": "#005f28",
+                        "surface-bright": "#192760",
+                        "inverse-surface": "#fbf8ff",
+                        "on-secondary-container": "#e9cdff",
+                        "error": "#ff716c",
+                        "error-dim": "#d7383b",
+                        "background": "#020a2f",
+                        "secondary-fixed": "#e5c6ff",
+                        "on-surface": "#e1e4ff",
+                        "on-secondary": "#33005b",
+                        "secondary-dim": "#9c48ea",
+                        "secondary-container": "#6f00be",
+                        "surface-dim": "#020a2f",
+                        "surface-container-high": "#0e1b4c",
+                        "on-error": "#490006",
+                        "primary-dim": "#699cff",
+                        "on-surface-variant": "#a1a9d5",
+                        "on-error-container": "#ffa8a3",
+                        "inverse-on-surface": "#4b537a",
+                        "tertiary-fixed": "#6bff8f",
+                        "tertiary-dim": "#5bf083",
+                        "surface": "#020a2f",
+                        "tertiary": "#c5ffc9",
+                        "primary-container": "#6e9fff",
+                        "surface-container-lowest": "#000000",
+                        "surface-container-highest": "#142156",
+                        "tertiary-fixed-dim": "#5bf083",
+                        "outline-variant": "#3d466c",
+                        "on-primary-fixed-variant": "#002a62",
+                        "on-background": "#e1e4ff",
+                        "on-primary-fixed": "#000000"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(20, 33, 86, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #85adff 0%, #6e9fff 100%);
+        }
+        .success-glow {
+            box-shadow: 0 0 20px rgba(107, 255, 143, 0.3);
+        }
+        .streak-glow {
+            box-shadow: 0 0 15px rgba(193, 128, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-blue-950/60 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-bold tracking-tighter text-blue-300 font-headline">QuantGym</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-blue-300 font-bold font-headline hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Dashboard</a>
+<a class="text-blue-100/70 font-headline hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Explore</a>
+<a class="text-blue-100/70 font-headline hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Quizzes</a>
+<a class="text-blue-100/70 font-headline hover:bg-white/10 transition-colors px-3 py-1 rounded-lg" href="#">Achievements</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-blue-300 hover:bg-white/10 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="p-2 text-blue-300 hover:bg-white/10 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">military_tech</span>
+</button>
+<button class="p-2 text-blue-300 hover:bg-white/10 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</nav>
+<!-- Quiz Header: Progress & Streak -->
+<header class="pt-24 pb-8 px-6 max-w-4xl mx-auto">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-high text-primary hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div>
+<span class="text-label-sm uppercase tracking-widest text-on-surface-variant font-bold">Daily Sprint</span>
+<h1 class="text-headline-md font-headline text-on-surface">Stochastic Calculus 101</h1>
+</div>
+</div>
+<!-- Streak Indicator -->
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container/30 border border-secondary/20 streak-glow">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-headline font-bold text-secondary">14 DAY STREAK</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full w-[65%] kinetic-gradient rounded-full shadow-[0_0_15px_rgba(133,173,255,0.4)]"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-xs font-medium text-primary">Question 7 of 12</span>
+<span class="text-xs font-medium text-on-surface-variant">65% Completed</span>
+</div>
+</header>
+<!-- Main Content: Quiz Engine -->
+<main class="px-6 pb-24 max-w-4xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Question Section -->
+<div class="lg:col-span-12">
+<div class="glass-panel p-8 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
+<!-- Accent Glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-bold tracking-tighter uppercase">Advanced</span>
+<span class="text-on-surface-variant text-xs">+50 XP</span>
+</div>
+<h2 class="text-xl md:text-2xl font-headline font-medium text-on-surface leading-tight mb-8">
+                            If <span class="font-mono text-primary-fixed">W(t)</span> is a standard Wiener process, what is the expected value of <span class="font-mono text-primary-fixed">E[W(t)²]</span> at time <span class="font-mono text-primary-fixed">t</span>?
+                        </h2>
+<!-- Options Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Correct Option Example -->
+<button class="group relative flex items-center justify-between p-5 rounded-2xl bg-surface-container-high border-2 border-transparent hover:border-primary/50 hover:bg-surface-bright transition-all text-left active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<span class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-headline font-bold group-hover:text-primary transition-colors">A</span>
+<span class="font-medium text-on-surface">Zero</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary">radio_button_unchecked</span>
+</button>
+<button class="group relative flex items-center justify-between p-5 rounded-2xl bg-surface-container-high border-2 border-primary/40 bg-primary/5 shadow-[0_0_20px_rgba(133,173,255,0.1)] transition-all text-left active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<span class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary text-on-primary font-headline font-bold">B</span>
+<span class="font-medium text-on-surface">t</span>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="group relative flex items-center justify-between p-5 rounded-2xl bg-surface-container-high border-2 border-transparent hover:border-primary/50 hover:bg-surface-bright transition-all text-left active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<span class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-headline font-bold group-hover:text-primary transition-colors">C</span>
+<span class="font-medium text-on-surface">t²</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary">radio_button_unchecked</span>
+</button>
+<button class="group relative flex items-center justify-between p-5 rounded-2xl bg-surface-container-high border-2 border-transparent hover:border-primary/50 hover:bg-surface-bright transition-all text-left active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<span class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-headline font-bold group-hover:text-primary transition-colors">D</span>
+<span class="font-medium text-on-surface">√(t)</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Instant Feedback Overlay (Shown after selection) -->
+<div class="lg:col-span-12 space-y-6">
+<!-- Success State -->
+<div class="bg-tertiary/10 border border-tertiary/20 rounded-3xl p-6 flex items-start gap-6 success-glow">
+<div class="w-16 h-16 shrink-0 flex items-center justify-center rounded-2xl bg-tertiary text-on-tertiary shadow-lg">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<h3 class="text-xl font-headline font-bold text-tertiary">Brilliant! Correct Answer</h3>
+<span class="text-tertiary text-sm font-bold">+50 XP</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+                            By definition of the Wiener process, the variance Var(W(t)) = E[W(t)²] - (E[W(t)])². Since E[W(t)] = 0, it follows that E[W(t)²] = Var(W(t)) = t.
+                        </p>
+<!-- Quick Tip Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-highest border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-sm">lightbulb</span>
+<span class="text-xs font-bold text-primary-fixed uppercase tracking-wider">Quick Tip</span>
+<span class="text-xs text-on-surface-variant">Remember: W(t) ~ N(0, t)</span>
+</div>
+</div>
+</div>
+<!-- Error State Example (Hidden conceptually or visible for demo) -->
+<!-- 
+                <div class="bg-error/10 border border-error/20 rounded-3xl p-6 flex items-start gap-6 shadow-[0_0_30px_rgba(255,113,108,0.2)]">
+                    <div class="w-16 h-16 shrink-0 flex items-center justify-center rounded-2xl bg-error text-on-error shadow-lg">
+                        <span class="material-symbols-outlined text-3xl">heart_broken</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-headline font-bold text-error">Not quite this time</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">
+                            The expected value of the square of a Wiener process is its variance, which scales linearly with time.
+                        </p>
+                    </div>
+                </div> 
+                -->
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full p-6 bg-surface-container-low/80 backdrop-blur-xl border-t border-white/5 z-50">
+<div class="max-w-4xl mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-medium">Hint (50 Gems)</span>
+</button>
+<div class="flex items-center gap-4">
+<button class="px-8 py-3 rounded-xl font-headline font-bold text-primary-fixed hover:bg-primary/10 transition-all">
+                    Skip
+                </button>
+<button class="kinetic-gradient px-12 py-3 rounded-xl font-headline font-bold text-on-primary shadow-[0_8px_20px_rgba(133,173,255,0.3)] hover:shadow-[0_12px_24px_rgba(133,173,255,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                    Continue
+                </button>
+</div>
+</div>
+</footer>
+<!-- Side Navigation (Shared Component - Hidden on Mobile) -->
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-20 xl:w-64 z-40 bg-slate-900/80 backdrop-blur-2xl flex-col py-8 px-4 space-y-2 shadow-2xl transition-all">
+<div class="text-xl font-bold text-blue-300 mb-8 font-headline xl:block hidden">QuantGym</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium xl:block hidden">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-medium xl:block hidden">Explore</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 bg-purple-500/20 text-purple-300 border-r-4 border-purple-500 rounded-r-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-medium xl:block hidden">Quizzes</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-medium xl:block hidden">Achievements</span>
+</a>
+</div>
+<div class="pt-4 mt-4 border-t border-white/5 space-y-1">
+<div class="xl:flex hidden items-center gap-3 p-4 bg-surface-container rounded-2xl mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JD</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Level 14</div>
+<div class="text-[10px] text-on-surface-variant uppercase tracking-tighter font-bold">Quant Initiate</div>
+</div>
+</div>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium xl:block hidden">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-medium xl:block hidden">Support</span>
+</a>
+</div>
+</aside>
+</body></html>

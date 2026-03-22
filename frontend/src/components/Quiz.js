@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getQuizData } from '../quiz_api';
 
@@ -11,9 +11,13 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [streak] = useState(14); // Mock streak data
   const [quizResults, setQuizResults] = useState([]);
+  const [quizData, setQuizData] = useState({ title: '', questions: [] });
 
-  // Get quiz data based on subject
-  const quizData = getQuizData(subject);
+  // Generate quiz data once when component mounts
+  useEffect(() => {
+    const data = getQuizData(subject);
+    setQuizData(data);
+  }, [subject]);
 
   const totalQuestions = quizData.questions.length;
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
@@ -25,6 +29,8 @@ const Quiz = () => {
     setShowFeedback(true);
 
     const currentQ = quizData.questions[currentQuestion];
+    if (!currentQ) return; // Guard against undefined question
+
     const isCorrect = answerIndex === currentQ.correctAnswer;
 
     if (isCorrect) {
@@ -73,6 +79,18 @@ const Quiz = () => {
   };
 
   const currentQ = quizData.questions[currentQuestion];
+
+  // Show loading state while quiz data is being fetched
+  if (!quizData.questions.length) {
+    return (
+      <div className="min-h-screen bg-background text-on-surface flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin w-8 h-8 border-2 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-on-surface-variant">Loading quiz...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-on-surface">

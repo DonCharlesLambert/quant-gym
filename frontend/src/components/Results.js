@@ -14,8 +14,9 @@ const Results = () => {
   };
 
   // Calculate metrics
-  const accuracy = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
-  const maxScore = totalQuestions * 50; // Assuming 50 XP per question
+  const correctAnswers = quizResults.filter(result => result.isCorrect).length;
+  const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+  const maxScore = quizResults.reduce((total, result) => total + result.xp, 0); // Sum actual XP values
   const scoreDisplay = `${score}/${maxScore}`;
 
   // Mock additional data (in a real app, this would come from API)

@@ -14,6 +14,7 @@ const Lab = () => {
       'cs-3': 'data-structures', // Could be algorithms quiz
       'math-1': 'linear-algebra',
       'math-2': 'linear-algebra',
+      'math-4': 'zetamac',
       'finance-1': 'stochastic-calculus',
       'finance-2': 'stochastic-calculus'
     };

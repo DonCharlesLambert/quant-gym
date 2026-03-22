@@ -1,4 +1,9 @@
 export function getQuizData(subject) {
+  // Handle dynamic question generation for zetamac
+  if (subject === 'zetamac') {
+    return generateZetamacQuiz();
+  }
+
   const quizDatabase = {
     'stochastic-calculus': {
       title: 'Stochastic Calculus 101',
@@ -163,6 +168,77 @@ export function getQuizSubjects() {
     'stochastic-calculus': 'Stochastic Calculus 101',
     'linear-algebra': 'Linear Algebra Fundamentals',
     'python-mastery': 'Python Mastery',
-    'data-structures': 'Data Structures & Algorithms'
+    'data-structures': 'Data Structures & Algorithms',
+    'zetamac': 'Zetamac - Arithmetic Speed Training'
   });
+}
+
+// Generate dynamic arithmetic questions for Zetamac
+function generateZetamacQuiz() {
+  const operations = ['+', '-', '×', '÷'];
+  const questions = [];
+
+  for (let i = 0; i < 10; i++) {
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+    let num1, num2, answer, question;
+
+    switch (operation) {
+      case '+':
+        num1 = Math.floor(Math.random() * 50) + 1;
+        num2 = Math.floor(Math.random() * 50) + 1;
+        answer = num1 + num2;
+        question = `${num1} + ${num2}`;
+        break;
+      case '-':
+        num1 = Math.floor(Math.random() * 50) + 25; // Ensure positive result
+        num2 = Math.floor(Math.random() * 25) + 1;
+        answer = num1 - num2;
+        question = `${num1} - ${num2}`;
+        break;
+      case '×':
+        num1 = Math.floor(Math.random() * 12) + 1;
+        num2 = Math.floor(Math.random() * 12) + 1;
+        answer = num1 * num2;
+        question = `${num1} × ${num2}`;
+        break;
+      case '÷':
+        answer = Math.floor(Math.random() * 12) + 1;
+        num2 = Math.floor(Math.random() * 12) + 1;
+        num1 = answer * num2; // Ensure clean division
+        question = `${num1} ÷ ${num2}`;
+        break;
+    }
+
+    // Generate wrong answers
+    const wrongAnswers = [];
+    while (wrongAnswers.length < 3) {
+      let wrongAnswer;
+      do {
+        const offset = Math.floor(Math.random() * 20) - 10; // -10 to +10
+        wrongAnswer = answer + offset;
+      } while (wrongAnswer === answer || wrongAnswers.includes(wrongAnswer) || wrongAnswer < 0);
+      wrongAnswers.push(wrongAnswer);
+    }
+
+    // Combine correct and wrong answers, shuffle them
+    const allAnswers = [answer, ...wrongAnswers];
+    const shuffledAnswers = allAnswers.sort(() => Math.random() - 0.5);
+    const correctIndex = shuffledAnswers.indexOf(answer);
+
+    questions.push({
+      id: i + 1,
+      question: `What is ${question}?`,
+      options: shuffledAnswers.map(ans => ans.toString()),
+      correctAnswer: correctIndex,
+      explanation: `The correct answer is ${answer}.`,
+      tip: "Practice makes perfect!",
+      difficulty: "Easy",
+      xp: 25
+    });
+  }
+
+  return {
+    title: 'Zetamac - Arithmetic Speed Training',
+    questions
+  };
 }

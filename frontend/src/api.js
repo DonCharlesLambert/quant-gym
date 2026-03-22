@@ -97,6 +97,18 @@ export function getLabTiles(subject) {
         badges: { earned: 4, total: 4 },
         buttonText: 'Review Basics',
       },
+      {
+        id: 'math-4',
+        title: 'Zetamac',
+        description: 'Basic arithmetic speed training',
+        difficulty: 'Easy',
+        mastery: 85,
+        progress: 65,
+        icon: 'calculate',
+        xp: 300,
+        badges: { earned: 3, total: 5 },
+        buttonText: 'Start Quiz',
+      },
     ],
     finance: [
       {
